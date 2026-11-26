@@ -1,4 +1,4 @@
-/* Café Breizh — hero: ONE real 3D croissant (GLB mesh, Three.js).
+/* First Light Cottage — hero: ONE real 3D croissant (GLB mesh, Three.js).
    Same engine as the approved hero sample, scoped to the main page's
    hero section. No particles. Auto-spin with entrance grow-in,
    rocking and breathing; Light/Dark toggle (hero only), drag to

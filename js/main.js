@@ -1,29 +1,27 @@
-/* Café Breizh — own code. Motion values per Tòpas spec. */
+/* First Light Cottage — own code. Motion values per Tòpas spec. */
 (function(){
 "use strict";
 var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 var $ = function(s,c){return (c||document).querySelector(s)};
 var $$ = function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
 
-/* ---------- live status, America/Los_Angeles, both locations ----------
-   Spring Mountain: Mon-Thu 7-17, Fri-Sun 7-18 · Henderson: Mon-Thu 7-16, Fri-Sun 7-17 */
+/* ---------- live status, America/Los_Angeles ----------
+   Grand Opening: Sat Nov 28 2026, 7:00-15:00 PT. No regular hours yet. */
 function openState(){
   try{
-    var parts = new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',weekday:'short',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
+    var parts = new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
     var o={}; parts.forEach(function(p){o[p.type]=p.value});
-    var day={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[o.weekday];
     var mins=(parseInt(o.hour,10)%24)*60+parseInt(o.minute,10);
-    function open(close){ return mins>=420 && mins<close*60; }
-    var weekend = day===0||day===5||day===6;
-    return { sm: open(weekend?18:17), hd: open(weekend?17:16) };
-  }catch(e){ return {sm:false,hd:false}; }
+    var isDay = +o.year===2026 && +o.month===11 && +o.day===28;
+    var before = (+o.year<2026)||(+o.year===2026&&(+o.month<11||(+o.month===11&&+o.day<28)));
+    return { open: isDay && mins>=420 && mins<900, before: before };
+  }catch(e){ return {open:false,before:true}; }
 }
 function paintStatus(){
   var s=openState(), dot=$('[data-status-dot]'), txt=$('[data-status-text]');
   if(!dot||!txt) return;
-  var any=s.sm||s.hd;
-  dot.classList.toggle('is-open',any);
-  txt.textContent = s.sm&&s.hd ? 'Open — both locations' : s.sm ? 'Open — Spring Mountain' : s.hd ? 'Open — Henderson' : 'Closed — opens 7 AM tomorrow';
+  dot.classList.toggle('is-open',s.open);
+  txt.textContent = s.open ? 'Open now — Grand Opening til 3 PM' : s.before ? 'Grand Opening Sat Nov 28 · 7 AM–3 PM' : 'Now open in Redmond, OR';
 }
 paintStatus(); setInterval(paintStatus,60000);
 
@@ -91,7 +89,7 @@ function runIntro(){
   var word=$('[data-intro-word]');
   var letters=word.textContent.split(''); word.textContent='';
   var spans=letters.map(function(c){var s=document.createElement('span');s.className='ch';s.textContent=c;word.appendChild(s);return s});
-  var msgs=['Preheating the oven…','Folding the dough…','Isigny butter, promise…','Turning golden…'];
+  var msgs=['Warming up the cottage…','Grinding the beans…','Thump Coffee, promise…','First light, rising…'];
   var mi=0, msgEl=$('[data-intro-msg]');
   var msgTimer=setInterval(function(){ mi=(mi+1)%msgs.length; if(msgEl) msgEl.textContent=msgs[mi]; },650);
   var bar=$('[data-intro-bar]'), prog={v:0.04};
