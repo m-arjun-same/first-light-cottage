@@ -158,7 +158,7 @@ if(!reduced){
   /* words scrub */
   var wEl=$('[data-words]');
   if(wEl){ var words=splitWords(wEl);
-    gsap.fromTo(words,{opacity:0.12},{opacity:1,stagger:0.08,ease:'none',scrollTrigger:{trigger:wEl,start:'top 78%',end:'bottom 50%',scrub:true}});
+    gsap.fromTo(words,{opacity:0.12},{opacity:1,stagger:0.08,ease:'none',scrollTrigger:{trigger:wEl,start:'top 85%',end:'bottom 65%',scrub:true}});
   }
   /* sign brush wipe */
   $$('[data-sign]').forEach(function(el){
@@ -207,7 +207,7 @@ if(!reduced){
 var buildPin=$('[data-build-pin]');
 if(buildPin){
   var steps=$$('.s-build__step'), bar=$('[data-build-bar]'), result=$('[data-build-result]'), twist=$('[data-build-twist]');
-  var marks=[0.02,0.14,0.36,0.46,0.57,0.66];
+  var marks=[0,0.14,0.36,0.46,0.57,0.66];
   var layers=$$('[data-layer]');
   function show(el,on){ gsap.to(el,{autoAlpha:on?1:0,y:on?0:24,duration:0.5,overwrite:true}); }
   var rOn=false,tOn=false,stepsHidden=false,introOff=false;
@@ -219,10 +219,10 @@ if(buildPin){
       if(bar) bar.style.transform='scaleX('+p+')';
       steps.forEach(function(li,i){ li.classList.toggle('is-active',p>=marks[i]&&p<marks[i+1]); li.classList.toggle('is-done',p>=marks[i+1]); });
       layers.forEach(function(l,i){
-        var on = p>=marks[i] && p<0.70;
-        gsap.to(l,{autoAlpha:on?1:0,scale:on?1:0.88,duration:0.4,overwrite:true});
+        var on = p>=marks[i] && p<marks[i+1];
+        gsap.to(l,{autoAlpha:on?1:0,scale:on?1:0.88,duration:0.25,overwrite:true});
       });
-      var r=p>0.70&&p<0.82, t=p>0.88;
+      var r=p>=0.66&&p<0.82, t=p>=0.82;
       if(r!==rOn) show(result,(rOn=r));
       if(t!==tOn) show(twist,(tOn=t));
       var off=small.matches&&p>0.015;
