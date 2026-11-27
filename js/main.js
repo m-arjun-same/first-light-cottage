@@ -1,4 +1,4 @@
-/* First Light Cottage — own code. Motion values per Tòpas spec. */
+/* Foxglove & Ember — own code. Motion values per Tòpas spec. */
 (function(){
 "use strict";
 var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -21,7 +21,7 @@ function paintStatus(){
   var s=openState(), dot=$('[data-status-dot]'), txt=$('[data-status-text]');
   if(!dot||!txt) return;
   dot.classList.toggle('is-open',s.open);
-  txt.textContent = s.open ? 'Open now — Grand Opening til 3 PM' : s.before ? 'Grand Opening Sat Nov 28 · 7 AM–3 PM' : 'Now open in Redmond, OR';
+  txt.textContent = s.open ? 'Open now — Grand Opening til 3 PM' : s.before ? 'Grand Opening Sat Nov 28 · 7 AM–3 PM' : 'Now open in Foxglove Hollow';
 }
 paintStatus(); setInterval(paintStatus,60000);
 
@@ -89,7 +89,7 @@ function runIntro(){
   var word=$('[data-intro-word]');
   var letters=word.textContent.split(''); word.textContent='';
   var spans=letters.map(function(c){var s=document.createElement('span');s.className='ch';s.textContent=c;word.appendChild(s);return s});
-  var msgs=['Warming up the cottage…','Grinding the beans…','Thump Coffee, promise…','First light, rising…'];
+  var msgs=['Warming up the cottage…','Grinding the beans…','Foxglove Roast, promise…','Ember light, rising…'];
   var mi=0, msgEl=$('[data-intro-msg]');
   var msgTimer=setInterval(function(){ mi=(mi+1)%msgs.length; if(msgEl) msgEl.textContent=msgs[mi]; },650);
   var bar=$('[data-intro-bar]'), prog={v:0.04};
@@ -152,7 +152,7 @@ if(!reduced){
   $$('[data-jelly]').forEach(function(el){
     el.addEventListener('pointermove',function(e){
       var ch=e.target.closest('.split-ch'); if(!ch||gsap.isTweening(ch)) return;
-      gsap.fromTo(ch,{y:0,scaleY:1},{y:'-0.22em',scaleY:1.12,duration:0.22,yoyo:true,repeat:1,ease:'power2.out',transformOrigin:'50% 100%',color:'#FEB914',clearProps:'color'});
+      gsap.fromTo(ch,{y:0,scaleY:1},{y:'-0.22em',scaleY:1.12,duration:0.22,yoyo:true,repeat:1,ease:'power2.out',transformOrigin:'50% 100%',color:'#E8B84B',clearProps:'color'});
     });
   });
   /* words scrub */

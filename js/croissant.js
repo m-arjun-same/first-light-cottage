@@ -1,5 +1,5 @@
 /* Café Breizh — ONE actual food item as living particles.
-   Particles are sampled from the REAL croissant photo (assets/img/ig-croissant.jpg):
+   Particles are sampled from the REAL croissant photo (assets/img/fe-croissant.webp):
    every particle takes its position AND its colour from an actual pixel of the
    photo, with brightness as relief depth. Own code, raw WebGL, no libraries. */
 (function () {
@@ -132,7 +132,7 @@
 
   var img = new Image();
   img.onload = function () { buildFromImage(img); };
-  img.src = 'assets/img/ig-croissant.jpg';
+  img.src = 'assets/img/fe-croissant.webp';
 
   /* controls — same wiring as the reference sample */
   var spinning = true, pulseStart = -10;
