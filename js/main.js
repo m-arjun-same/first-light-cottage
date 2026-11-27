@@ -152,7 +152,7 @@ if(!reduced){
   $$('[data-jelly]').forEach(function(el){
     el.addEventListener('pointermove',function(e){
       var ch=e.target.closest('.split-ch'); if(!ch||gsap.isTweening(ch)) return;
-      gsap.fromTo(ch,{y:0,scaleY:1},{y:'-0.22em',scaleY:1.12,duration:0.22,yoyo:true,repeat:1,ease:'power2.out',transformOrigin:'50% 100%',color:'#D71927',clearProps:'color'});
+      gsap.fromTo(ch,{y:0,scaleY:1},{y:'-0.22em',scaleY:1.12,duration:0.22,yoyo:true,repeat:1,ease:'power2.out',transformOrigin:'50% 100%',color:'#FF1840',clearProps:'color'});
     });
   });
   /* words scrub */
