@@ -201,7 +201,6 @@ if(!reduced){
     ScrollTrigger.create({onUpdate:function(s){ boost=1+Math.min(5,Math.abs(s.getVelocity())/300); }});
     gsap.ticker.add(function(){ boost+=(1-boost)*0.05; loops.forEach(function(l){ l.timeScale(boost); }); });
   }
-  gsap.from('.marquee--a',{rotate:-8,ease:'none',scrollTrigger:{trigger:'.s-marquee',start:'top bottom',end:'bottom top',scrub:true}});
 }
 
 /* ---------- build (pinned) ---------- */
